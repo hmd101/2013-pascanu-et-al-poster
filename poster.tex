@@ -55,12 +55,7 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Column 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{column}{0.33\textwidth}
       \begin{block}{1. Introduction \& Background}
-        % \textbf{1.1 Context}
-        % \begin{itemize}
-        %   \item Importance of sequence modeling
-        %   \item Vanishing \& Exploding gradient problems
-        %   \item Stability crucial for learning temporal dependencies
-        % \end{itemize}
+
         \textbf{1.1 Context}
             \begin{itemize}
             \item \textbf{Importance of sequence modeling}
@@ -152,12 +147,7 @@
       \end{block}
     \end{column}
 
-    % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Column 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % \begin{column}{0.33\textwidth}
-    %   \begin{block}{2. The Problem}
-    %     % TODO: fill in this section
-    %   \end{block}
-    % \end{column}
+
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Column 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         \begin{column}{0.33\textwidth}
@@ -185,8 +175,8 @@
             \vspace{1em}
             \textbf{2.2.1 Dynamical systems interpretation:}
             \begin{itemize}
-                \item EGs create steep wall-like structures\\
-                    that are perpendicular to exploding direction\\
+                \item EGs create steep wall-like structures 
+                    that are perpendicular to exploding direction 
                     in error surface
             \end{itemize}
         
@@ -200,12 +190,71 @@
         \end{column}
   
 
+    % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Column 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % \begin{column}{0.33\textwidth}
+    %   \begin{block}{3. Solution \& Experiments}
+    %     % TODO: fill in this section
+    %   \end{block}
+    % \end{column}
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Column 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \begin{column}{0.33\textwidth}
-      \begin{block}{3. Solution \& Experiments}
-        % TODO: fill in this section
-      \end{block}
-    \end{column}
+\begin{column}{0.33\textwidth}
+    \begin{block}{3. Solution \& Experiments}
+  
+      \textbf{3.1 Gradient Clipping}
+      \begin{itemize}
+        \item see Fig. 3 for \textit{motivation}
+        \item Pseudo-code for norm-clipping
+      \end{itemize}
+  
+      \vspace{0.5em}
+      \textbf{3.2 VG-Regularization}
+      \begin{itemize}
+        \item see paper eq. 9 \& 10
+      \end{itemize}
+  
+      \vspace{0.5em}
+      \textbf{3.3 MSGD-CR} \hfill {\footnotesize (combines 3.1 \& 3.2)}
+  
+      \vspace{0.5em}
+      \textbf{3.4 Initialization Strategies}
+      \begin{itemize}
+        \item see experiments in Sec. 4
+      \end{itemize}
+  
+      \vspace{1em}
+      \begin{center}
+        \fbox{\parbox{0.9\linewidth}{\centering \vspace{10em} \textit{placeholder figure} \vspace{2em}}}
+        \\[0.3em]
+        Fig. 4
+      \end{center}
+
+      \begin{center}
+        \fbox{\parbox{0.9\linewidth}{\centering \vspace{10em} \textit{placeholder figure} \vspace{2em}}}
+        \\[0.3em]
+        Fig. 5
+      \end{center}
+  
+    \end{block}
+  
+    \vspace{1em}
+  
+    \begin{block}{4. Relevance today \& SOTA techniques}
+      \begin{itemize}
+        \item Clipping still relevant!
+        \item Instead of regularization:
+        \begin{itemize}
+          \item residual connections
+          \item gradient checkpointing
+          \item gating mechanisms
+          \item layer normalization
+          \item attention mechanism
+          \item positional encoding
+        \end{itemize}
+      \end{itemize}
+    \end{block}
+  \end{column}
+  
 
   \end{columns}
 
