@@ -1,3 +1,4 @@
+
 % LaTeX poster using beamerposter class (3-column layout)
 \documentclass[final]{beamer}
 
@@ -73,14 +74,9 @@
             \item $\rightarrow$ Why stable gradient flow is critical for learning temporal dependencies (paper's contribution)
             \end{itemize}
 
-
-
-
         \vspace{1em}
 
-
         \textbf{1.2 Schematic \& formal def. of RNN}
-
             \begin{tikzpicture}[node distance=2.5cm, thick, >=latex, every node/.style={scale=1.5}, xshift=-1cm]
             % Nodes
             \node[draw, minimum height=1.5cm, minimum width=0.8cm] (input) {$u_t$};
@@ -100,8 +96,6 @@
             % Label
             \node[below=0.5cm of input] {Fig. 1};
             \end{tikzpicture}
-        % \end{center}
-    
 
         \vspace{0.5em}
         \begin{align*}
@@ -121,9 +115,7 @@
         \includegraphics[width=0.95\linewidth]{figures/2_fig.png}\\[0.5em]
         Fig. 2: Unrolled RNN
 
-
         \vspace{0.3em}
-        %\small
         \begin{align*}
           \textcolor{myblue}{\frac{\partial \mathcal{E}}{\partial \theta}} &=
           \sum_{t=1}^{T} \frac{\partial \mathcal{E}_t}{\partial \theta} \hspace{2em} \text{(3)} \\[0.5em]
@@ -148,58 +140,43 @@
       \end{block}
     \end{column}
 
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Column 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{column}{0.33\textwidth}
+    \begin{block}{2. The Problem}
+
+    \textbf{Mechanics of Exploding and Vanishing Gradients:} \\
+    These issues occur in RNNs due to repeated multiplication of Jacobian matrices during backpropagation. If the spectral radius $\rho$ of the recurrent weight matrix $W_{\text{rec}}$ is less than 1, gradients vanish; if greater than 1, they explode. For non-linear activations with bounded derivatives (e.g., $\gamma=1$ for tanh), gradients vanish when the largest singular value $\lambda_1 < \gamma^{-1}$.
+
+    \vspace{0.5em}
+    \textbf{Dynamical Systems View:} \\
+    An RNN’s hidden state evolves like a dynamical system converging to attractors. As parameters change, the system may cross bifurcation points, causing drastic changes in state evolution. Crossing basin boundaries can result in gradient explosions. Inputs can shift the system into different attractor basins, intensifying this instability.
+
+    \begin{center}
+        \includegraphics[width=0.9\linewidth]{figures/bifurcation.png} \\
+        \small Bifurcation diagram showing attractor transitions
+    \end{center}
+    
+    \begin{center}
+        \includegraphics[width=0.9\linewidth]{figures/function_and_input.png} \\
+        \small Gradient explosion due to basin crossing
+    \end{center}
+
+    \vspace{0.5em}
+    \textbf{Geometric Interpretation:} \\
+    Consider $x_t = w\sigma(x_{t-1}) + b$ with $x_0 = 0.5$. In the linear case ($b = 0$), gradients are $\frac{\partial x_t}{\partial w} = t w^{t-1} x_0$, showing exponential growth. Exploding gradients align with steep directions in the error surface, forming sharp walls that SGD struggles to traverse, disrupting convergence.
+
+    \begin{center}
+        \includegraphics[width=0.9\linewidth]{figures/geometric.png} \\
+        \small Steep error surface caused by exploding gradients
+    \end{center}
+
+    \end{block}
+\end{column}
 
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Column 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        \begin{column}{0.33\textwidth}
-            \begin{block}{2. The Problem} \todo{}
-        
-            \textbf{2.1 Vanishing Gradient problem (VG)}\\[0.3em]
-            \textit{Sufficient condition:}
-            \[
-                \textcolor{orange}{\lambda_1} < \frac{1}{\gamma}
-            \]
-            where: $\lambda_1$: largest singular value of $W_{\text{rec}}$\\
-            \phantom{where: }$\gamma$: bound on derivative of activation function\\[0.3em]
-            (proof: see eq. 6 \& 7)
-        
-            \vspace{1em}
-            \textbf{2.2 Exploding Gradient problem (EGs)}\\[-0.2em]
-            \begin{itemize}
-                \item gradients grow exponentially during backprop
-                \item \textit{Necessary condition:}
-                \[
-                \lambda_1 > \frac{1}{\gamma}
-                \]
-            \end{itemize}
-        
-            \vspace{1em}
-            \textbf{2.2.1 Dynamical systems interpretation:}
-            \begin{itemize}
-                \item EGs create steep wall-like structures 
-                    that are perpendicular to exploding direction 
-                    in error surface
-            \end{itemize}
-        
-            \vspace{2em}
-            \begin{center}
-                \fbox{\parbox{0.9\linewidth}{\centering \vspace{10em} \textit{placeholder figure} \vspace{2em}}}\\[0.3em]
-                Fig. 3
-            \end{center}
-        
-            \end{block}
-        \end{column}
-  
-
-    % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Column 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % \begin{column}{0.33\textwidth}
-    %   \begin{block}{3. Solution \& Experiments}
-    %     % TODO: fill in this section
-    %   \end{block}
-    % \end{column}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Column 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{column}{0.33\textwidth}
+    \begin{column}{0.33\textwidth}
     \begin{block}{3. Solution \& Experiments}
   
       \textbf{3.1 Gradient Clipping}
@@ -263,9 +240,7 @@
     \end{block}
   \end{column}
   
-
   \end{columns}
-
 \end{frame}
 
 \end{document}
