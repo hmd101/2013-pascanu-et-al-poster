@@ -1,18 +1,66 @@
 
 
+% % LaTeX poster using beamerposter class (3-column layout)
+% \documentclass[final]{beamer}
+% \geometry{paperwidth=24in,paperheight=36in}
+% %\usepackage[margin=2cm]{geometry}
+% \usepackage{tikz}
+% \usetikzlibrary{mindmap}
+
+
+
+% % Poster theme and packages
+% % \usepackage[size=a0,scale=1.0, border=2cm]{beamerposter}
+% %\usepackage[width=60.96cm,height=91.44cm,scale=1.0]{beamerposter} %setting dimensions to 24 by 36 inches per requirement
+% \usepackage[width=24in,height=36in,scale=1.0]{beamerposter}
+% \usepackage{amsmath, amssymb}
+
+% \usepackage{graphicx}
+% \usepackage{xcolor}
+% \usepackage{multicol}
+% \usepackage{tikz}
+% \usetikzlibrary{positioning} % <-- added for 'of=' syntax in tikz
+% \usepackage[utf8]{inputenc} % Ensure unicode compatibility
+% \usepackage{lmodern} % Better font rendering for large fonts
+
+% % Custom NYU Violet color and styling
+% \definecolor{nyuviolet}{RGB}{87, 0, 140}
+% \setbeamercolor{block title}{bg=nyuviolet, fg=white}
+% \setbeamercolor{block body}{bg=white, fg=black}
+% \setbeamerfont{block title}{series=\bfseries}
+% % Define the university color from University website
+% \definecolor{uniLightViolet1}{HTML}{ab82c5}
+% \definecolor{uniLightViolet2}{HTML}{eee6f3}
+
+% %% FOR colors used in equations:
+% \definecolor{myred}{RGB}{200,0,0}
+% \definecolor{myblue}{RGB}{0,0,180}
+% % define a big fat red todo command
+% \newcommand{\todo}[1]{\textcolor{myred}{\textbf{TODO:} #1}}
+
+% % Title and authors
+% \title{On the Difficulty of Training Recurrent Neural Networks (ICML 2013)}
+% \author{Razvan Pascanu, Tomas Mikolov, Yoshua Bengio}
+% %\institute{ICML 2013}
+
+% % Document
+% \begin{document}
+
 % LaTeX poster using beamerposter class (3-column layout)
 \documentclass[final]{beamer}
 \geometry{paperwidth=24in,paperheight=36in}
 %\usepackage[margin=2cm]{geometry}
 \usepackage{tikz}
 \usetikzlibrary{mindmap}
+\usepackage{ragged2e} % For \justifying
 
-
-
+\usepackage{anyfontsize}
+\renewcommand{\normalsize}{\fontsize{18}{22}\selectfont}
 % Poster theme and packages
 % \usepackage[size=a0,scale=1.0, border=2cm]{beamerposter}
 %\usepackage[width=60.96cm,height=91.44cm,scale=1.0]{beamerposter} %setting dimensions to 24 by 36 inches per requirement
-\usepackage[width=24in,height=36in,scale=1.0]{beamerposter}
+\usepackage[size=custom, width=91.44, height=60.96, scale=0.85]{beamerposter}
+% \usepackage[width=24in,height=36in,scale=1.0]{beamerposter}
 \usepackage{amsmath, amssymb}
 
 \usepackage{graphicx}
@@ -48,27 +96,35 @@
 
 \begin{frame}[t]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title Block %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-   \vspace{1em} 
-\begin{columns}[t,totalwidth=\textwidth]
-    \begin{column}{0.7\textwidth}
-    % \hspace{1em}
-    %   \vspace{1em}
-      {\centering
-        {\Huge\bfseries On the Difficulty of Training RNNs (ICML, 2013)}\\[0.3em]
-        {\Huge R. Pascanu, T. Mikolov, Y. Bengio}\\[0.3em]
-        %{\Large\itshape ICML 2013}
-      }
-    \end{column}
-    \begin{column}{0.2\textwidth}
-      \flushright
-      \Large \textit{Presented by:\\
-      Hanna M. Dettki,
-      Anagha Radhakrishna Palandye,
-      Eric Zhong,
-      Harshit Bhargava}
-    \end{column}
-  \end{columns}
-  % \vspace{2em}
+%    \vspace{1em} 
+% \begin{columns}[t,totalwidth=\textwidth]
+%     \begin{column}{0.7\textwidth}
+%     % \hspace{1em}
+%     %   \vspace{1em}
+%       {\centering
+%         {\Huge\bfseries On the Difficulty of Training RNNs (ICML, 2013)}\\[0.3em]
+%         {\Huge R. Pascanu, T. Mikolov, Y. Bengio}\\[0.3em]
+%         %{\Large\itshape ICML 2013}
+%       }
+%     \end{column}
+%     \begin{column}{0.2\textwidth}
+%       \flushright
+%       \Large \textit{Presented by:\\
+%       Hanna M. Dettki,
+%       Anagha Radhakrishna Palandye,
+%       Eric Zhong,
+%       Harshit Bhargava}
+%     \end{column}
+%   \end{columns}
+%   % \vspace{2em}
+\begin{center}
+
+    {\Huge\bfseries On the Difficulty of Training RNNs (ICML, 2013)}\\[0.5em]
+    {\Large R. Pascanu, T. Mikolov, Y. Bengio}\\[1em]
+    {\large \textit{Presented by: Hanna M. Dettki, Anagha Radhakrishna Palandye, Juechen Zhong, Harshit Bhargava}}
+  \end{center}
+    % \vspace{2em}
+  
 
   % Main body columns
   \begin{columns}[t,totalwidth=\textwidth]
@@ -98,32 +154,61 @@
 
         \textbf{1.2 Schematic \& formal def. of a Recurrent Neural Network (RNN)}
 
-                 \begin{tikzpicture}[node distance=2.5cm, thick, >=latex, every node/.style={scale=1.5}, xshift=-1cm]
-            % Nodes
-            \node[draw, minimum height=1.5cm, minimum width=0.8cm] (input) {$u_t$};
-            \node[draw, right=of input, minimum height=1.5cm, minimum width=0.8cm] (rnn) {$x_t$};
-            \node[right=of rnn] (error) {$\mathcal{E}_t$};
+        %          \begin{tikzpicture}[node distance=2.5cm, thick, >=latex, every node/.style={scale=1.5}, xshift=-1cm]
+        %     % Nodes
+        %     \node[draw, minimum height=1.5cm, minimum width=0.8cm] (input) {$u_t$};
+        %     \node[draw, right=of input, minimum height=1.5cm, minimum width=0.8cm] (rnn) {$x_t$};
+        %     \node[right=of rnn] (error) {$\mathcal{E}_t$};
             
-            % Arrows
-            \draw[->, line width=1.5pt] (input) -- (rnn);
-            \draw[->, line width=1.5pt] (rnn) -- (error);
+        %     % Arrows
+        %     \draw[->, line width=1.5pt] (input) -- (rnn);
+        %     \draw[->, line width=1.5pt] (rnn) -- (error);
             
-            % Recurrent loop (from right to left, meeting top corners)
-            \draw[->, orange, line width=2pt]
-                ([xshift=3pt,yshift=3pt]rnn.north east)
-                to[out=45,in=135,looseness=1.2]
-                ([xshift=-3pt,yshift=3pt]rnn.north west);
+        %     % Recurrent loop (from right to left, meeting top corners)
+        %     \draw[->, orange, line width=2pt]
+        %         ([xshift=3pt,yshift=3pt]rnn.north east)
+        %         to[out=45,in=135,looseness=1.2]
+        %         ([xshift=-3pt,yshift=3pt]rnn.north west);
         
             
-            % Label
-            \node[below=0.5cm of input] {\tiny{Fig. 1: \textcolor{orange}{\textbf{The recurrent connections}} in the hidden layer allow information to persist from one input to another.}};
-            \end{tikzpicture}
+        %     % Label
+        %     \node[below=0.5cm of input] {\tiny{Fig. 1: \textcolor{orange}{\textbf{The recurrent connections}} in the hidden layer allow information to persist from one input to another.}};
+        %     \end{tikzpicture}
 
-        \vspace{.5em}
-        \begin{align*}
-          x_t &= F(x_{t-1}, u_t, \theta) && \text{(1) General} \\
-          x_t &= \textcolor{orange}{W_{\text{rec}}} \, \sigma(x_{t-1}) + W_{in} u_t + \mathbf{b} && \text{(2) used in the paper}
-        \end{align*}
+        % \vspace{.5em}
+        % \begin{align*}
+        %   x_t &= F(x_{t-1}, u_t, \theta) && \text{(1) General} \\
+        %   x_t &= \textcolor{orange}{W_{\text{rec}}} \, \sigma(x_{t-1}) + W_{in} u_t + \mathbf{b} && \text{(2) used in the paper}
+        % \end{align*}
+
+        \begin{center}
+            \begin{tikzpicture}[node distance=2.5cm, thick, >=latex, every node/.style={scale=1.5}, xshift=-1cm]
+       % Nodes
+       \node[draw, minimum height=1.5cm, minimum width=0.8cm] (input) {$u_t$};
+       \node[draw, right=of input, minimum height=1.5cm, minimum width=0.8cm] (rnn) {$x_t$};
+       \node[right=of rnn] (error) {$\mathcal{E}_t$};
+       
+       % Arrows
+       \draw[->, line width=1.5pt] (input) -- (rnn);
+       \draw[->, line width=1.5pt] (rnn) -- (error);
+       
+       % Recurrent loop (from right to left, meeting top corners)
+       \draw[->, orange, line width=2pt]
+           ([xshift=3pt,yshift=3pt]rnn.north east)
+           to[out=45,in=135,looseness=1.2]
+           ([xshift=-3pt,yshift=3pt]rnn.north west);
+       % Label
+       % \node[below=0.5cm of input] {\tiny{Fig. 1: \textcolor{orange}{\textbf{The recurrent connections}} in the hidden layer allow information to persist from one input to another.}}
+       ;
+       \end{tikzpicture}
+       \end{center}
+       
+{{Fig. 1: \textcolor{orange}{\textbf{The recurrent connections}} in the hidden layer allow information to persist from one input to another.}}
+   % \vspace{.5em}
+   \begin{align*}
+     x_t &= F(x_{t-1}, u_t, \theta) && \text{(1) General} \\
+     x_t &= \textcolor{orange}{W_{\text{rec}}} \, \sigma(x_{t-1}) + W_{in} u_t + \mathbf{b} && \text{(2) used in the paper}
+   \end{align*}
 
         \vspace{0.5em}
         %\small
@@ -212,6 +297,40 @@
     \end{center}
 
     \end{block}
+
+
+
+    \begin{block}{5. Relevance today \& SOTA techniques}
+        %%% SUMMARY
+        % \begin{table}[h!]
+        % \centering
+        % \begin{tabular}{|c|c|c|}
+        % \hline
+        % \textbf{Technique} & \textbf{Advantages} & \textbf{Disadvantages} \\ \hline
+        % Gradient Clipping & Prevents exploding gradients & Requires tuning of threshold \\ \hline
+        % Regularization & Mitigates vanishing gradients & May not fully prevent instability \\ \hline
+        % Initialization Strategies & Improves convergence & Sensitive to parameter choice \\ \hline
+        % \end{tabular}
+        % \caption{Comparison of Techniques for Addressing Gradient Issues in RNNs}
+        % \end{table}
+
+ 
+            %%% reorganized bullet points below in more space-efficient way
+        
+            \begin{tabular}{@{}ll@{}}
+                \textbf{Exploding gradients:} & \textbf{Clipping is still relevant!} \\
+                \textbf{Vanishing gradients:} & 
+                    \begin{minipage}[t]{0.8\textwidth} 
+                        \textbf{Alternatives to regularization:}\\[0.3em]
+                        \begin{tabular}{@{}lll@{}}
+                        $\bullet$ Residual connections     & $\bullet$ Gating mechanisms       & $\bullet$ Attention mechanism \\
+                        $\bullet$ Gradient checkpointing   & $\bullet$ Layer normalization     & $\bullet$ Positional encoding \\
+                        \end{tabular}
+                    \end{minipage} \\
+                \end{tabular}
+                
+                \end{block}
+    
 \end{column}
 
 
@@ -347,34 +466,34 @@
 
     %\vspace{1em}
   
-    \begin{block}{5. Relevance today \& SOTA techniques}
-        %%% SUMMARY
-        % \begin{table}[h!]
-        % \centering
-        % \begin{tabular}{|c|c|c|}
-        % \hline
-        % \textbf{Technique} & \textbf{Advantages} & \textbf{Disadvantages} \\ \hline
-        % Gradient Clipping & Prevents exploding gradients & Requires tuning of threshold \\ \hline
-        % Regularization & Mitigates vanishing gradients & May not fully prevent instability \\ \hline
-        % Initialization Strategies & Improves convergence & Sensitive to parameter choice \\ \hline
-        % \end{tabular}
-        % \caption{Comparison of Techniques for Addressing Gradient Issues in RNNs}
-        % \end{table}
+    % \begin{block}{5. Relevance today \& SOTA techniques}
+    %     %%% SUMMARY
+    %     % \begin{table}[h!]
+    %     % \centering
+    %     % \begin{tabular}{|c|c|c|}
+    %     % \hline
+    %     % \textbf{Technique} & \textbf{Advantages} & \textbf{Disadvantages} \\ \hline
+    %     % Gradient Clipping & Prevents exploding gradients & Requires tuning of threshold \\ \hline
+    %     % Regularization & Mitigates vanishing gradients & May not fully prevent instability \\ \hline
+    %     % Initialization Strategies & Improves convergence & Sensitive to parameter choice \\ \hline
+    %     % \end{tabular}
+    %     % \caption{Comparison of Techniques for Addressing Gradient Issues in RNNs}
+    %     % \end{table}
 
  
-            %%% reorganized bullet points below in more space-efficient way
+    %         %%% reorganized bullet points below in more space-efficient way
         
-            \begin{tabular}{@{}ll@{}}
-                \textbf{Exploding gradients:} & \textbf{Clipping is still relevant!} \\
-                \textbf{Vanishing gradients:} & 
-                    \begin{minipage}[t]{0.8\textwidth} 
-                        \textbf{Alternatives to regularization:}\\[0.3em]
-                        \begin{tabular}{@{}lll@{}}
-                        $\bullet$ Residual connections     & $\bullet$ Gating mechanisms       & $\bullet$ Attention mechanism \\
-                        $\bullet$ Gradient checkpointing   & $\bullet$ Layer normalization     & $\bullet$ Positional encoding \\
-                        \end{tabular}
-                    \end{minipage} \\
-                \end{tabular}
+    %         \begin{tabular}{@{}ll@{}}
+    %             \textbf{Exploding gradients:} & \textbf{Clipping is still relevant!} \\
+    %             \textbf{Vanishing gradients:} & 
+    %                 \begin{minipage}[t]{0.8\textwidth} 
+    %                     \textbf{Alternatives to regularization:}\\[0.3em]
+    %                     \begin{tabular}{@{}lll@{}}
+    %                     $\bullet$ Residual connections     & $\bullet$ Gating mechanisms       & $\bullet$ Attention mechanism \\
+    %                     $\bullet$ Gradient checkpointing   & $\bullet$ Layer normalization     & $\bullet$ Positional encoding \\
+    %                     \end{tabular}
+    %                 \end{minipage} \\
+    %             \end{tabular}
                 
     
                 
@@ -391,7 +510,7 @@
     %       \item positional encoding
     %     \end{itemize}
     %   \end{itemize}
-    \end{block}
+    %\end{block}
     \hspace{2em}
   \end{column}
   
