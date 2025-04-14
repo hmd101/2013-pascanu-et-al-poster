@@ -1,51 +1,5 @@
 
 
-% % LaTeX poster using beamerposter class (3-column layout)
-% \documentclass[final]{beamer}
-% \geometry{paperwidth=24in,paperheight=36in}
-% %\usepackage[margin=2cm]{geometry}
-% \usepackage{tikz}
-% \usetikzlibrary{mindmap}
-
-
-
-% % Poster theme and packages
-% % \usepackage[size=a0,scale=1.0, border=2cm]{beamerposter}
-% %\usepackage[width=60.96cm,height=91.44cm,scale=1.0]{beamerposter} %setting dimensions to 24 by 36 inches per requirement
-% \usepackage[width=24in,height=36in,scale=1.0]{beamerposter}
-% \usepackage{amsmath, amssymb}
-
-% \usepackage{graphicx}
-% \usepackage{xcolor}
-% \usepackage{multicol}
-% \usepackage{tikz}
-% \usetikzlibrary{positioning} % <-- added for 'of=' syntax in tikz
-% \usepackage[utf8]{inputenc} % Ensure unicode compatibility
-% \usepackage{lmodern} % Better font rendering for large fonts
-
-% % Custom NYU Violet color and styling
-% \definecolor{nyuviolet}{RGB}{87, 0, 140}
-% \setbeamercolor{block title}{bg=nyuviolet, fg=white}
-% \setbeamercolor{block body}{bg=white, fg=black}
-% \setbeamerfont{block title}{series=\bfseries}
-% % Define the university color from University website
-% \definecolor{uniLightViolet1}{HTML}{ab82c5}
-% \definecolor{uniLightViolet2}{HTML}{eee6f3}
-
-% %% FOR colors used in equations:
-% \definecolor{myred}{RGB}{200,0,0}
-% \definecolor{myblue}{RGB}{0,0,180}
-% % define a big fat red todo command
-% \newcommand{\todo}[1]{\textcolor{myred}{\textbf{TODO:} #1}}
-
-% % Title and authors
-% \title{On the Difficulty of Training Recurrent Neural Networks (ICML 2013)}
-% \author{Razvan Pascanu, Tomas Mikolov, Yoshua Bengio}
-% %\institute{ICML 2013}
-
-% % Document
-% \begin{document}
-
 % LaTeX poster using beamerposter class (3-column layout)
 \documentclass[final]{beamer}
 \geometry{paperwidth=24in,paperheight=36in}
@@ -154,32 +108,6 @@
 
         \textbf{1.2 Schematic \& formal def. of a Recurrent Neural Network (RNN)}
 
-        %          \begin{tikzpicture}[node distance=2.5cm, thick, >=latex, every node/.style={scale=1.5}, xshift=-1cm]
-        %     % Nodes
-        %     \node[draw, minimum height=1.5cm, minimum width=0.8cm] (input) {$u_t$};
-        %     \node[draw, right=of input, minimum height=1.5cm, minimum width=0.8cm] (rnn) {$x_t$};
-        %     \node[right=of rnn] (error) {$\mathcal{E}_t$};
-            
-        %     % Arrows
-        %     \draw[->, line width=1.5pt] (input) -- (rnn);
-        %     \draw[->, line width=1.5pt] (rnn) -- (error);
-            
-        %     % Recurrent loop (from right to left, meeting top corners)
-        %     \draw[->, orange, line width=2pt]
-        %         ([xshift=3pt,yshift=3pt]rnn.north east)
-        %         to[out=45,in=135,looseness=1.2]
-        %         ([xshift=-3pt,yshift=3pt]rnn.north west);
-        
-            
-        %     % Label
-        %     \node[below=0.5cm of input] {\tiny{Fig. 1: \textcolor{orange}{\textbf{The recurrent connections}} in the hidden layer allow information to persist from one input to another.}};
-        %     \end{tikzpicture}
-
-        % \vspace{.5em}
-        % \begin{align*}
-        %   x_t &= F(x_{t-1}, u_t, \theta) && \text{(1) General} \\
-        %   x_t &= \textcolor{orange}{W_{\text{rec}}} \, \sigma(x_{t-1}) + W_{in} u_t + \mathbf{b} && \text{(2) used in the paper}
-        % \end{align*}
 
         \begin{center}
             \begin{tikzpicture}[node distance=2.5cm, thick, >=latex, every node/.style={scale=1.5}, xshift=-1cm]
@@ -336,7 +264,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Column 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \begin{column}{0.3\textwidth}
+    \begin{column}{0.35\textwidth}
     % \begin{block}{3. Solution \& Experiments}
         \begin{block}{3. Solution }
 
