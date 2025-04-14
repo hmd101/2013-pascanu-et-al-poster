@@ -2,17 +2,17 @@
 
 % LaTeX poster using beamerposter class (3-column layout)
 \documentclass[final]{beamer}
+\geometry{paperwidth=24in,paperheight=36in}
 %\usepackage[margin=2cm]{geometry}
 \usepackage{tikz}
 \usetikzlibrary{mindmap}
 
-% Define the university color
-\definecolor{uniLightViolet1}{HTML}{ab82c5}
-\definecolor{uniLightViolet2}{HTML}{eee6f3}
+
 
 % Poster theme and packages
-\usepackage[size=a0,scale=1.0, border=2cm]{beamerposter}
-
+% \usepackage[size=a0,scale=1.0, border=2cm]{beamerposter}
+%\usepackage[width=60.96cm,height=91.44cm,scale=1.0]{beamerposter} %setting dimensions to 24 by 36 inches per requirement
+\usepackage[width=24in,height=36in,scale=1.0]{beamerposter}
 \usepackage{amsmath, amssymb}
 
 \usepackage{graphicx}
@@ -28,6 +28,9 @@
 \setbeamercolor{block title}{bg=nyuviolet, fg=white}
 \setbeamercolor{block body}{bg=white, fg=black}
 \setbeamerfont{block title}{series=\bfseries}
+% Define the university color from University website
+\definecolor{uniLightViolet1}{HTML}{ab82c5}
+\definecolor{uniLightViolet2}{HTML}{eee6f3}
 
 %% FOR colors used in equations:
 \definecolor{myred}{RGB}{200,0,0}
@@ -36,32 +39,36 @@
 \newcommand{\todo}[1]{\textcolor{myred}{\textbf{TODO:} #1}}
 
 % Title and authors
-\title{On the Difficulty of Training Recurrent Neural Networks}
+\title{On the Difficulty of Training Recurrent Neural Networks (ICML 2013)}
 \author{Razvan Pascanu, Tomas Mikolov, Yoshua Bengio}
-\institute{ICML 2013}
+%\institute{ICML 2013}
 
 % Document
 \begin{document}
 
 \begin{frame}[t]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title Block %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-   \vspace{3em} 
+   \vspace{1em} 
 \begin{columns}[t,totalwidth=\textwidth]
-    \begin{column}{0.66\textwidth}
-    \hspace{1em}
-      \vspace{1em}
+    \begin{column}{0.7\textwidth}
+    % \hspace{1em}
+    %   \vspace{1em}
       {\centering
-        {\veryHuge\bfseries On the Difficulty of Training RNNs}\\[0.5em]
-        {\Huge R. Pascanu, T. Mikolov, Y. Bengio}\\[0.5em]
-        {\Large\itshape ICML 2013}\\
+        {\Huge\bfseries On the Difficulty of Training RNNs (ICML, 2013)}\\[0.3em]
+        {\Huge R. Pascanu, T. Mikolov, Y. Bengio}\\[0.3em]
+        %{\Large\itshape ICML 2013}
       }
     \end{column}
-    \begin{column}{0.33\textwidth}
+    \begin{column}{0.2\textwidth}
       \flushright
-      \Large \textit{Presented by OUR NAMES: Hanna M. Dettki}
+      \Large \textit{Presented by:\\
+      Hanna M. Dettki,
+      Anagha Radhakrishna Palandye,
+      Eric Zhong,
+      Harshit Bhargava}
     \end{column}
   \end{columns}
-  \vspace{2em}
+  % \vspace{2em}
 
   % Main body columns
   \begin{columns}[t,totalwidth=\textwidth]
@@ -89,8 +96,9 @@
 
         \vspace{1em}
 
-        \textbf{1.2 Schematic \& formal def. of RNN}
-            \begin{tikzpicture}[node distance=2.5cm, thick, >=latex, every node/.style={scale=1.5}, xshift=-1cm]
+        \textbf{1.2 Schematic \& formal def. of a Recurrent Neural Network (RNN)}
+
+                 \begin{tikzpicture}[node distance=2.5cm, thick, >=latex, every node/.style={scale=1.5}, xshift=-1cm]
             % Nodes
             \node[draw, minimum height=1.5cm, minimum width=0.8cm] (input) {$u_t$};
             \node[draw, right=of input, minimum height=1.5cm, minimum width=0.8cm] (rnn) {$x_t$};
@@ -105,28 +113,34 @@
                 ([xshift=3pt,yshift=3pt]rnn.north east)
                 to[out=45,in=135,looseness=1.2]
                 ([xshift=-3pt,yshift=3pt]rnn.north west);
+        
             
             % Label
-            \node[below=0.5cm of input] {Fig. 1};
+            \node[below=0.5cm of input] {\tiny{Fig. 1: \textcolor{orange}{\textbf{The recurrent connections}} in the hidden layer allow information to persist from one input to another.}};
             \end{tikzpicture}
 
-        \vspace{0.5em}
+        \vspace{.5em}
         \begin{align*}
           x_t &= F(x_{t-1}, u_t, \theta) && \text{(1) General} \\
-          x_t &= \textcolor{orange}{W_{\text{rec}}} \, \sigma(x_{t-1}) + W_{in} u_t + \mathbf{b} && \text{(2)}
+          x_t &= \textcolor{orange}{W_{\text{rec}}} \, \sigma(x_{t-1}) + W_{in} u_t + \mathbf{b} && \text{(2) used in the paper}
         \end{align*}
 
         \vspace{0.5em}
-        \small
-        where $u_t$: input, $x_t$: state, $t$: time step, $\mathbf{b}$: bias, $\mathcal{E}_t = \mathcal{L}(x_t)$ (error)
+        %\small
+        where $\bullet$ $u_t$: input, $\bullet$  $x_t$: state, $\bullet$  $t$: time step, $\bullet$  $\mathbf{b}$: bias,  $\bullet$  $\mathcal{E}_t = \mathcal{L}(x_t)$ (error),  $\bullet$  \textcolor{orange}{$W_{rec}$: recurrent weight matrix}
 
         \vspace{0.5em}
-        \textcolor{orange}{\textbf{The recurrent connections}} in the hidden layer allow information to persist from one input to another.
+        %\textcolor{orange}{\textbf{The recurrent connections}} in the hidden layer allow information to persist from one input to another.
 
         \vspace{1em}
         \textbf{1.3 Training RNNs: Backprop Through Time (BPTT) on Unrolled RNN}\\
         \includegraphics[width=0.95\linewidth]{figures/2_fig.png}\\[0.5em]
-        Fig. 2: Unrolled RNN
+         Fig. 2: Unrolled RNN: Creating a copy of the model for each time step. \textcolor{myblue}{$\mathcal{E}_t$:}  error obtained at time step $t$ from the output |
+          %\hspace{3em} 
+          $\bullet$ \textcolor{myblue}{ \textit{total gradient over time}}
+        \quad
+        $\bullet$ \textcolor{myred}{ \textit{temporal error contribution}}
+
 
         \vspace{0.3em}
         \begin{align*}
@@ -146,16 +160,17 @@
         where $\frac{\partial^+ x_k}{\partial \theta}$ denotes the “immediate” partial derivative (treating $x_{k-1}$ as constant).
         
         \vspace{0.5em}
-        \textcolor{myblue}{Blue}: total gradient over time.
-        \quad
-        \textcolor{myred}{Red}: temporal error contribution.
+        %$\bullet$ \textcolor{myblue}{ \textit{total gradient over time}}
+        % \quad
+        %$\bullet$ \textcolor{myred}{ \textit{temporal error contribution}}
 
       \end{block}
-    \end{column}
 
-   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Column 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{column}{0.3\textwidth}
-    \begin{block}{2. The Problem}
+
+
+
+
+      \begin{block}{2. The Problem}
 
     \textbf{Mechanics of Exploding and Vanishing Gradients:} \\
     These issues occur in RNNs due to repeated multiplication of Jacobian matrices during backpropagation. If the spectral radius $\rho$ of the recurrent weight matrix $W_{\text{rec}}$ is less than 1, gradients vanish; if greater than 1, they explode. For non-linear activations with bounded derivatives (e.g., $\gamma=1$ for tanh), gradients vanish when the largest singular value $\lambda_1 < \gamma^{-1}$.
@@ -163,6 +178,19 @@
     \vspace{0.5em}
     \textbf{Dynamical Systems View:} \\
     An RNN's hidden state evolves like a dynamical system converging to attractors. As parameters change, the system may cross bifurcation points, causing drastic changes in state evolution. Crossing basin boundaries can result in gradient explosions. Inputs can shift the system into different attractor basins, intensifying this instability.
+    \end{block}
+    \end{column}
+
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Column 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{column}{0.3\textwidth}
+    \begin{block}{2. The Problem (cont.)}
+
+    % \textbf{Mechanics of Exploding and Vanishing Gradients:} \\
+    % These issues occur in RNNs due to repeated multiplication of Jacobian matrices during backpropagation. If the spectral radius $\rho$ of the recurrent weight matrix $W_{\text{rec}}$ is less than 1, gradients vanish; if greater than 1, they explode. For non-linear activations with bounded derivatives (e.g., $\gamma=1$ for tanh), gradients vanish when the largest singular value $\lambda_1 < \gamma^{-1}$.
+
+    % \vspace{0.5em}
+    % \textbf{Dynamical Systems View:} \\
+    % An RNN's hidden state evolves like a dynamical system converging to attractors. As parameters change, the system may cross bifurcation points, causing drastic changes in state evolution. Crossing basin boundaries can result in gradient explosions. Inputs can shift the system into different attractor basins, intensifying this instability.
 
     \begin{center}
         \includegraphics[width=0.9\linewidth]{figures/bifurcation.png} \\
@@ -190,7 +218,9 @@
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Column 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{column}{0.3\textwidth}
-    \begin{block}{3. Solution \& Experiments}
+    % \begin{block}{3. Solution \& Experiments}
+        \begin{block}{3. Solution }
+
         \textbf{Gradient Clipping}
         
         %\vspace{-2em}
@@ -236,8 +266,10 @@
 
 
       \end{itemize}
+\end{block}
+    \begin{block}{4. Experiments \& Results}
 
-  \textbf{Experiments and Results}
+  %\textbf{Experiments and Results}
 %   \begin{tikzpicture} 
 % [mindmap,
 %   grow cyclic,
@@ -264,18 +296,23 @@
 % ;
 % \end{tikzpicture}
 % Add vertical space after the mindmap
-  \vspace{0.5cm}
+   \vspace{0.5cm}
 
   % Add the heading and 6-7 lines of text
-  \textbf{Experiments and Results To edit} \\
-  This section presents the experimental setup and results. \\
-  evaluated the performance of different initialization methods. \\
-  The temporal order problem was tested across various sequence lengths. \\
-  Three initialization techniques were compared: sigmoid, basic tanh, and smart tanh. \\
-  The results highlight the impact of initialization on success rates. \\
-  Detailed analysis shows smart tanh outperforming the others. \\
-  See the figure below for a visual comparison of the results.
-
+  % \textbf{Experiments and Results To edit} \\
+  \small{
+  \begin{itemize}
+    \item Datasets Utilized: Experiments leveraged synthetic pathological tasks (temporal order, addition, multiplication, 3-bit temporal order, random permutation, noiseless memorization) (Hochreiter and Schmidhuber (1997)), and natural datasets including polyphonic music prediction (Piano-midi.de, Nottingham, MuseData) and character-level language modeling (Penn Treebank), testing both short and long-term dependency learning.
+    \item Temporal Order Problem Success: The temporal order problem showed that gradient clipping (MSGD-C) and regularization (MSGD-CR) improved success rates over standard mini-batch SGD (MSGD), especially for longer sequences.
+    \item Impact of Initialization: Three initializations (sigmoid, basic tanh, smart tanh) were compared, with "smart tanh" (sparse W\_rec, spectral radius 0.95) performing best, highlighting initialization's role in RNN training.
+    \item Clipping Importance: Gradient clipping was critical for tasks needing long memory traces, as longer sequences correlated with larger spectral radii, increasing the likelihood of exploding gradients.
+    \item Generalization Across Lengths: A single model trained with MSGD-CR handled sequences from 50 to 200 steps with 100\% success and generalized to unseen lengths up to 5000 steps, suggesting robust long-term memory. 
+    \item Other Pathological Tasks: MSGD-CR solved multiple tasks (addition, multiplication, 3-bit temporal order, random permutation, noiseless memorization) with near-perfect success for sequences up to 200 steps, outperforming prior work. 
+    \item Natural Problems Tested: The solutions were applied to real-world tasks: polyphonic music prediction (Piano-midi.de, Nottingham, MuseData) and character-level language modeling (Penn Treebank). 
+    \item Clipping as Optimization: Clipping improved both training and test errors in natural tasks, indicating it addresses optimization issues rather than acting as a regularizer. 
+    \item Regularization Challenges: Fixed regularization weights harmed short-term correlation learning in natural tasks; a decreasing schedule (halving) was needed, suggesting a trade-off between short- and long-term dependencies. 
+    \item SOTA Results: For Penn Treebank, MSGD-CR matched RNN SOTA results; for music prediction, it achieved RNN state-of-the-art, though RNN-NADE performed better overall, validating the clipping strategy. 
+  \end{itemize}}  % end small
   % Add vertical space before the image
   \vspace{0.5cm}
 \begin{center}
@@ -285,18 +322,7 @@
 \end{center}
  \vspace{0.5cm}
 
-  % Add the heading and 6-7 lines of text
-  \textbf{Results - what worked } \\
-  Line 1 \\
-  Line 2. \\
-  Line 3. \\
-  Line 4 \\
-  Line 5 \\
-  Line 6\\
-  Line 7\\
-  Line 8 \\
-  Line 9\\
-  Line 10
+
 % if using 3 images separately
 % \begin{figure}[h]
 %   \centering
@@ -319,9 +345,9 @@
 
     \end{block}
 
-    \vspace{1em}
+    %\vspace{1em}
   
-    \begin{block}{4. Relevance today \& SOTA techniques}
+    \begin{block}{5. Relevance today \& SOTA techniques}
         %%% SUMMARY
         % \begin{table}[h!]
         % \centering
