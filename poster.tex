@@ -1,7 +1,5 @@
 
 
-
-
 % LaTeX poster using beamerposter class (3-column layout)
 \documentclass[final]{beamer}
 \geometry{paperwidth=24in,paperheight=36in}
@@ -55,84 +53,7 @@
 \begin{document}
 
 \begin{frame}[t]
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title Block %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%    \vspace{1em} 
-% \begin{columns}[t,totalwidth=\textwidth]
-%     \begin{column}{0.7\textwidth}
-%     % \hspace{1em}
-%     %   \vspace{1em}
-%       {\centering
-%         {\Huge\bfseries On the Difficulty of Training RNNs (ICML, 2013)}\\[0.3em]
-%         {\Huge R. Pascanu, T. Mikolov, Y. Bengio}\\[0.3em]
-%         %{\Large\itshape ICML 2013}
-%       }
-%     \end{column}
-%     \begin{column}{0.2\textwidth}
-%       \flushright
-%       \Large \textit{Presented by:\\
-%       Hanna M. Dettki,
-%       Anagha Radhakrishna Palandye,
-%       Eric Zhong,
-%       Harshit Bhargava}
-%     \end{column}
-%   \end{columns}
-%   % \vspace{2em}
 
-% \begin{center} {\Huge\bfseries On the Difficulty of Training RNNs (ICML, 2013)}\\[0.5em]
-% {\Large R. Pascanu, T. Mikolov, Y. Bengio}\\[1em]
-% {\large \textit{Presented by: Hanna M. Dettki, Anagha Radhakrishna Palandye, Juechen Zhong, Harshit Bhargava}}
-%   \end{center}
-% Commenting out to add Logo
-% \begin{center}
-%   \colorbox{nyuviolet}{
-%     \parbox{\textwidth}{
-%       \centering
-%       {\color{white}
-%         \Huge\bfseries On the Difficulty of Training RNNs (ICML, 2013)\\[0.5em]
-%         \Large R. Pascanu, T. Mikolov, Y. Bengio\\[1em]
-%         \large \textit{Poster presented by: Hanna M. Dettki, Anagha Radhakrishna Palandye, Juechen Zhong, Harshit Bhargava}
-%       }
-%     }
-%   }
-% \end{center}
-
-%below works , needs a small fix
-% \begin{center}
-%   \begin{minipage}{0.2\linewidth} % 20% of the page width for the logo
-%     \colorbox{nyuviolet}{\includegraphics[width=\linewidth]{figures/cds_logo.png}} % Replace with your logo path
-%   \end{minipage}%
-%   \begin{minipage}{0.78\linewidth} % Remaining 80% for the text block
-%     \colorbox{nyuviolet}{
-%       \parbox{\linewidth}{
-%         \centering
-%         {\color{white}
-%           \Huge\bfseries On the Difficulty of Training RNNs (ICML, 2013)\\[0.5em]
-%           \Large R. Pascanu, T. Mikolov, Y. Bengio\\[1em]
-%           \large \textit{Poster presented by: Hanna M. Dettki, Anagha Radhakrishna Palandye, Juechen Zhong, Harshit Bhargava}
-%         }
-%       }
-%     }
-%   \end{minipage}
-% \end{center}
-
-% % Set explicit text margins for consistency
-% \setbeamersize{text margin left=1cm, text margin right=1cm}
-
-% \begin{center}
-%   \noindent
-%   \colorbox{nyuviolet}{
-%     \begin{minipage}{0.12\textwidth}
-%       \includegraphics[width=\linewidth, valign=c]{figures/cds_logo.png}
-%     \end{minipage}%
-%     \begin{minipage}{0.88\textwidth}
-%       \centering
-%       \color{white}
-%       \Huge\bfseries On the Difficulty of Training RNNs (ICML, 2013)\\[0.5em]
-%       \Large R. Pascanu, T. Mikolov, Y. Bengio\\[0.7em]
-%       \large \textit{Poster presented by: Hanna M. Dettki, Anagha Radhakrishna Palandye, Juechen Zhong, Harshit Bhargava}
-%     \end{minipage}
-%   }
-% \end{center}
 
 \begin{center}
   \noindent
@@ -153,16 +74,7 @@
 
 
 
-% \begin{beamercolorbox}[rounded=true, shadow=true, center, wd=\textwidth, sep=1em, colback=uniLightViolet1, colfg=white]{title block}
-%   {\Huge\bfseries On the Difficulty of Training RNNs (ICML, 2013)}\\[0.5em]
-%   {\Large R. Pascanu, T. Mikolov, Y. Bengio}\\[1em]
-%   {\large \textit{Presented by: Hanna M. Dettki, Anagha Radhakrishna Palandye, Juechen Zhong, Harshit Bhargava}}
-% \end{beamercolorbox}
-    % \vspace{2em}
-  
-% % Set column separation explicitly
-% \setlength{\columnsep}{0.02\textwidth}
-  % Main body columns
+
   \begin{columns}[t,totalwidth=\textwidth]
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Column 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -179,13 +91,15 @@
 
             \item Identifying gradient problems [1]%(Bengio et al., 1994)
             \begin{itemize}
-                \item \textbf{Vanishing gradient problem}: impossible to learn long-term dependencies
-                \item \textbf{Exploding gradient problem}: numerical instabilities $\rightarrow$ unstable training
+                \item \textbf{Vanishing gradient problem (VGP)}: impossible to learn long-term dependencies
+                \item \textbf{Exploding gradient problem (EGP)}: numerical instabilities $\rightarrow$ unstable training
             \end{itemize}
 
             % \item $\rightarrow$ a) Why stable gradient flow is critical for learning temporal dependencies; b) and solutions (both paper's contribution)
-            \item $\rightarrow$ \textbf{a.} Stable gradient propagation as a prerequisite for learning long-range dependencies in RNNs
-\textbf{b.} Gradient norm clipping and temporal sensitivity regularization as targeted solutions (both \textbf{a} \& \textbf{b} are paper's contributions)
+            \item $\rightarrow$ \textbf{a.} 
+            %Stable gradient propagation as a prerequisite for learning long-range dependencies in RNNs
+            Why learning long-term dependencies requires stable gradients
+\textbf{b.} Gradient norm clipping \& temporal sensitivity regularization as  solutions for VGP \& EGP (both \textbf{a} \& \textbf{b} are paper's contributions)
             \end{itemize}
 
         % \vspace{1em}
@@ -457,25 +371,6 @@
  % \vspace{0.5cm}
 
 
-% if using 3 images separately
-% \begin{figure}[h]
-%   \centering
-%   \begin{minipage}{0.3\textwidth}
-%     \centering
-%     \includegraphics[width=\textwidth]{figures/sigmoid.png}
-%     \caption{sigmoid.png}
-%   \end{minipage}\hfill
-%   \begin{minipage}{0.3\textwidth}
-%     \centering
-%     \includegraphics[width=\textwidth]{figures/basic_tanh.png}
-%     \caption{basic_tanh.png}
-%   \end{minipage}\hfill
-%   \begin{minipage}{0.3\textwidth}
-%     \centering
-%     \includegraphics[width=\textwidth]{figures/smart_tanh.png}
-%     \caption{smart_tanh.png}
-%   \end{minipage}
-% \end{figure}
 
     \end{block}
 
@@ -540,53 +435,8 @@
 
     \end{block}
     
-    
-    %\vspace{1em}
-  
-    % \begin{block}{5. Relevance today \& SOTA techniques}
-    %     %%% SUMMARY
-    %     % \begin{table}[h!]
-    %     % \centering
-    %     % \begin{tabular}{|c|c|c|}
-    %     % \hline
-    %     % \textbf{Technique} & \textbf{Advantages} & \textbf{Disadvantages} \\ \hline
-    %     % Gradient Clipping & Prevents exploding gradients & Requires tuning of threshold \\ \hline
-    %     % Regularization & Mitigates vanishing gradients & May not fully prevent instability \\ \hline
-    %     % Initialization Strategies & Improves convergence & Sensitive to parameter choice \\ \hline
-    %     % \end{tabular}
-    %     % \caption{Comparison of Techniques for Addressing Gradient Issues in RNNs}
-    %     % \end{table}
-
- 
-    %         %%% reorganized bullet points below in more space-efficient way
         
-    %         \begin{tabular}{@{}ll@{}}
-    %             \textbf{Exploding gradients:} & \textbf{Clipping is still relevant!} \\
-    %             \textbf{Vanishing gradients:} & 
-    %                 \begin{minipage}[t]{0.8\textwidth} 
-    %                     \textbf{Alternatives to regularization:}\\[0.3em]
-    %                     \begin{tabular}{@{}lll@{}}
-    %                     $\bullet$ Residual connections     & $\bullet$ Gating mechanisms       & $\bullet$ Attention mechanism \\
-    %                     $\bullet$ Gradient checkpointing   & $\bullet$ Layer normalization     & $\bullet$ Positional encoding \\
-    %                     \end{tabular}
-    %                 \end{minipage} \\
-    %             \end{tabular}
-                
-    
-                
 
-    %   \begin{itemize}
-    %     \item Clipping still relevant!
-    %     \item Instead of regularization:
-    %     \begin{itemize}
-    %       \item residual connections
-    %       \item gradient checkpointing
-    %       \item gating mechanisms
-    %       \item layer normalization
-    %       \item attention mechanism
-    %       \item positional encoding
-    %     \end{itemize}
-    %   \end{itemize}
     %\end{block}
     \hspace{2em}
   \end{column}
